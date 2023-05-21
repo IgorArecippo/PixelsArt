@@ -1,48 +1,45 @@
 const selecionado = document.getElementById('black');
-if (selecionado.classList) selecionado.classList.add ('selected');
-else selecionado.className += ' selected'
+if (selecionado.classList) selecionado.classList.add('selected');
+else selecionado.className += ' selected';
 
-
-let cores = document.querySelectorAll('.color');
+const cores = document.querySelectorAll('.color');
 for (let i = 0; i < cores.length; i += 1) {
-        cores[i].addEventListener('click', mudaClasse);
+  cores[i].addEventListener('click', mudaClasse);
 }
-function mudaClasse (event) {
-    let corSelecionada = document.querySelector('.selected');
-    corSelecionada.classList.remove('selected');
-    event.target.classList.add('selected');
+function mudaClasse(event) {
+  const corSelecionada = document.querySelector('.selected');
+  corSelecionada.classList.remove('selected');
+  event.target.classList.add('selected');
 }
-let pixels = document.getElementsByClassName('pixel')
-    for (let pixel of pixels){
-        pixel.addEventListener('click', mudaCor);
-    } 
-function mudaCor (event) {
+const pixels = document.getElementsByClassName('pixel');
+for (const pixel of pixels) {
+  pixel.addEventListener('click', mudaCor);
+}
+function mudaCor(event) {
+  const element = document.querySelector('.selected');
+  const cssObj = window.getComputedStyle(element);
+  const bgColor = cssObj.getPropertyValue('background-color');
+  event.target.style.backgroundColor = bgColor;
+}
 
-    const element = document.querySelector('.selected')
-    const cssObj = window.getComputedStyle(element);
-    let bgColor = cssObj.getPropertyValue('background-color')
-    event.target.style.backgroundColor = bgColor;
-}    
-
-
-function limpa () {
-    let botao = document.getElementById('clear-board');
-    botao.addEventListener ('click', function(){
-    let quadradinhos = document.getElementsByClassName('pixel');
-    for (let pixel of quadradinhos) {
-        pixel.style.backgroundColor = 'white'
+function limpa() {
+  const botao = document.getElementById('clear-board');
+  botao.addEventListener('click', () => {
+    const quadradinhos = document.getElementsByClassName('pixel');
+    for (const pixel of quadradinhos) {
+      pixel.style.backgroundColor = 'white';
     }
-    })
+  });
 }
 
-limpa()
+limpa();
 
-/*let pixels = document.querySelectorAll('.pixel')  
+/* let pixels = document.querySelectorAll('.pixel')
 let pixels = document.getElementsByClassName('pixel');
 let cssObj = window.getComputedStyle(pixels, null);
 let bgColor = cssObj.getPropertyValue
 ('background-color');
-    
+
 for (let pixel of pixels) {
         pixel.addEventListener('click', function(event){
             let pintar = document.querySelector('.selected')
@@ -51,13 +48,12 @@ for (let pixel of pixels) {
     )}
 }
 
-function mudaCor(){ 
+function mudaCor(){
     let pixels = document.querySelector('#pixel-board');
     pixels.addEventListener('click', function(event) {
     event.target.style.backgroundcolor = pixels.style.backgroundcolor
 })
 }
-
 
  /*for (i = 0; i < pixels.length; i += 1) {
     let pixelSelecionado = pixels[i];
